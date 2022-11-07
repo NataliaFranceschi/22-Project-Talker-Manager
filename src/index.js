@@ -29,6 +29,12 @@ app.get('/talker', async (req, res) => {
   res.status(200).json(talker);
 });
 
+app.get('/talker/search', auth, async (req, res) => {
+  const { q } = req.query;
+  const search = await talkerManager.searchTalkerManager(q);
+  res.status(200).json(search);
+});
+
 app.get('/talker/:id', async (req, res) => {
   const { id } = req.params;
   const talker = await talkerManager.getManagerById(Number(id));
@@ -47,17 +53,6 @@ app.post('/talker', auth, validateName, validateAge, validateTalk, async (req, r
   const { name, age, talk } = req.body;
   const newTalkerManager = await talkerManager.createTalkerManager({ name, age, talk });
   res.status(201).send(newTalkerManager);
-});
-
-app.get('/talker/search', async (req, res) => {
- const { q } = req.query;
- const allTalkerManager = await talkerManager.readTalkerManagerFile();
- 
-if (q) {
- const filteredTalkerManager = allTalkerManager.filter((element) => element.includes(q));
- return res.status(200).json(filteredTalkerManager);
-}
-res.status(200).end();
 });
 
 app.put('/talker/:id', auth, validateTalk, validateName, validateAge, async (req, res) => {

@@ -64,6 +64,11 @@ const deleteTalkerManager = async (id) => {
   return true;
 };
 
+const searchTalkerManager = async (q) => {
+  const talkerManager = await readTalkerManagerFile();
+   return talkerManager.filter((e) => e.name.includes(q));
+};
+
 module.exports = {
   getAlltalkers,
   readTalkerManagerFile,
@@ -72,4 +77,5 @@ module.exports = {
   createTalkerManager,
   updateTalkerManager,
   deleteTalkerManager,
+  searchTalkerManager,
 };
