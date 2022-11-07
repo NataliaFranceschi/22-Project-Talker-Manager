@@ -30,9 +30,22 @@ const getManagerById = async (id) => {
   return talkerManager.find((manager) => manager.id === id);
 };
 
+const createTalkerManager = async (talkerManagerRequest) => {
+ const talkerManager = await readTalkerManagerFile();
+  const newTalkerManager = {
+    id: talkerManager[talkerManager.length - 1].id + 1,
+    ...talkerManagerRequest,
+  }; 
+  talkerManager.push(newTalkerManager);
+  await writeTalkerManagerFile(talkerManager); 
+
+  return newTalkerManager;
+};
+
 module.exports = {
   getAlltalkers,
   readTalkerManagerFile,
   writeTalkerManagerFile,
   getManagerById,
+  createTalkerManager,
 };

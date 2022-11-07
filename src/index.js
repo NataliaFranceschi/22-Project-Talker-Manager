@@ -3,7 +3,10 @@ const bodyParser = require('body-parser');
 const talkerManager = require('./talkerManager');
 const validateEmail = require('./middlewares/validateEmail');
 const validatePassword = require('./middlewares/validatePassword');
-// const auth = require('./middlewares/auth');
+const validateAge = require('./middlewares/validateAge');
+const validateName = require('./middlewares/validateName');
+const validateTalk = require('./middlewares/validateTalk');
+const auth = require('./middlewares/auth');
 const generateToken = require('./utils/generateToken');
 
 const app = express();
@@ -38,4 +41,10 @@ app.get('/talker/:id', async (req, res) => {
 app.post('/login', validatePassword, validateEmail, (_req, res) => {
   const token = generateToken();
     return res.status(200).json({ token });
+});
+
+app.post('/talker', validateName, validateAge, validateTalk, auth, async (req, res) => {
+  const { name, age, talk } = req.body;
+  const newTalkerManager = await talkerManager.createTalkerManager({ name, age, talk });
+  res.status(201).send(newTalkerManager);
 });
