@@ -43,20 +43,31 @@ app.post('/login', validatePassword, validateEmail, (_req, res) => {
     return res.status(200).json({ token });
 });
 
-app.post('/talker', validateName, validateAge, validateTalk, auth, async (req, res) => {
+app.post('/talker', auth, validateName, validateAge, validateTalk, async (req, res) => {
   const { name, age, talk } = req.body;
   const newTalkerManager = await talkerManager.createTalkerManager({ name, age, talk });
   res.status(201).send(newTalkerManager);
 });
 
-app.put('/talker/:id', validateName, validateAge, validateTalk, auth, async (req, res) => {
+app.get('/talker/search', async (req, res) => {
+ const { q } = req.query;
+ const allTalkerManager = await talkerManager.readTalkerManagerFile();
+ 
+if (q) {
+ const filteredTalkerManager = allTalkerManager.filter((element) => element.includes(q));
+ return res.status(200).json(filteredTalkerManager);
+}
+res.status(200).end();
+});
+
+app.put('/talker/:id', auth, validateTalk, validateName, validateAge, async (req, res) => {
   const { id } = req.params;
   const { name, age, talk } = req.body;
   const updateTalkerManager = await talkerManager.updateTalkerManager(id, { name, age, talk });
-  res.status(201).send(updateTalkerManager);
+  res.status(200).send(updateTalkerManager);
 });
 
-app.delete('/talker/:id', async (req, res) => {
+app.delete('/talker/:id', auth, async (req, res) => {
   const { id } = req.params;
   const deleted = await talkerManager.deleteTalkerManager(id);
 
