@@ -1,6 +1,6 @@
 module.exports = (req, res, next) => {
     const { email } = req.body;
-    const validEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+    const validEmail = /\S+@\S+\.\S+/;
 
     if (!email) {
       return res.status(400).json(
