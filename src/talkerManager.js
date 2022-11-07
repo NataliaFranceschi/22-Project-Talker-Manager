@@ -54,6 +54,16 @@ const updateTalkerManager = async (id, talkerManagerRequest) => {
   return update;
 };
 
+const deleteTalkerManager = async (id) => {
+  const talkerManager = await readTalkerManagerFile();
+  const newTalkerManagerList = talkerManager.filter((e) => e.id !== Number(id));
+  if (talkerManager.length === newTalkerManagerList.length) {
+    return false; 
+  }
+  await writeTalkerManagerFile(newTalkerManagerList);
+  return true;
+};
+
 module.exports = {
   getAlltalkers,
   readTalkerManagerFile,
@@ -61,4 +71,5 @@ module.exports = {
   getManagerById,
   createTalkerManager,
   updateTalkerManager,
+  deleteTalkerManager,
 };

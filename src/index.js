@@ -55,3 +55,11 @@ app.put('/talker/:id', validateName, validateAge, validateTalk, auth, async (req
   const updateTalkerManager = await talkerManager.updateTalkerManager(id, { name, age, talk });
   res.status(201).send(updateTalkerManager);
 });
+
+app.delete('/talker/:id', async (req, res) => {
+  const { id } = req.params;
+  const deleted = await talkerManager.deleteTalkerManager(id);
+
+  if (deleted) return res.status(204).end();
+  return res.status(404).json({ message: `Não foi encontrado nenhum palestrante com o id ${id}` });
+});
