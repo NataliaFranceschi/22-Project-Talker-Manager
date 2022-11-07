@@ -48,3 +48,10 @@ app.post('/talker', validateName, validateAge, validateTalk, auth, async (req, r
   const newTalkerManager = await talkerManager.createTalkerManager({ name, age, talk });
   res.status(201).send(newTalkerManager);
 });
+
+app.put('/talker/:id', validateName, validateAge, validateTalk, auth, async (req, res) => {
+  const { id } = req.params;
+  const { name, age, talk } = req.body;
+  const updateTalkerManager = await talkerManager.updateTalkerManager(id, { name, age, talk });
+  res.status(201).send(updateTalkerManager);
+});
