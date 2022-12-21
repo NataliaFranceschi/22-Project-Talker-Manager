@@ -1,13 +1,13 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Boas vindas ao repositório do projeto Talker Manager
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Projeto desenvolvido no curso da Trybe ao final do bloco 22* do Módulo 3 - Desenvolvimento Back-end.<br>
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+<strong>*Bloco 22: Introdução ao desenvolvimento web com Node.js</strong><br>
+ 22.1 - Node.js: Runtime Assíncrono<br>
+ 22.2 - Node.js: API REST com express<br>
+ 22.3 - Node.js: Testes de integração<br>
+ 22.4 - Node.js: Express e Middlewares<br>
+ 22.5 - Node.js: Express e MySQL<br>
+ 22.6 - Projeto Talker Manager<br>
+ 
+No projeto Talker Manager utilizando a ferramenta Express desenvolvi uma API Rest capaz de criar, visualizar, editar e deletar informações de um banco de dados de palestrantes criada no MySQL. 
